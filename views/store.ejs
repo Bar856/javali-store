@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javali Store - Store</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">JAVALI</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/Store">Store</a></li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="/changePassword">Change Password</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/"><span class="glyphicon glyphicon-user"></span> Log out</a></li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container" style="max-width: 1000px;">
+      <img class=logoImg src="javaliLogo.png" alt="JavaliLogo">
+        <h1>Store</h1>
+        <label for="catagorySelect">Filter:</label>
+          <select class="form-select" onchange="selectOnChange()" id="catagorySelect" aria-label="Default select example">
+            <option value="All">Select Category</option>
+            <option value="All">All</option>
+            <option value="Album">Albums</option>
+            <option value="Song">Songs</option>
+            <option value="Merch">Merch</option>
+            <option value="Event">Events</option>
+        </select>
+        <table>
+            <tr>
+                <th class="text-center">Artwork</th>
+                <th class="text-center">Pruduct</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Category</th>
+                <th class="text-center">Buy Link</th>
+            </tr>
+            <!-- <tr>
+                <td><img src="background.jpg" alt=""></td>
+                <td>Example</td>
+                <td>5$</td>
+                <td>Songs</td>
+                <td><a href="#">Buy Now</a></td>
+            </tr> -->
+            <%itemsList.forEach(item =>{%>
+                <tr>
+                    <td id="imgCol" ><img class='tableImg' src="/files/<%=item.imgUrl%>" alt=""></td>
+                    <td id="nameCol"><%=item.itemName%></td>
+                    <td id="priceCol"><%=item.price%>$</td>
+                    <td id="catagoryCol"><%=item.itemCategory%></td>
+                    <td id="buyCol"><a href="#">Buy Now</a></td>
+                </tr>
+            <%})%>
+        </table>
+    </div>
+    <form id="changeCategoryForm" method="post" action="/store" hidden>
+      <input type="text" id="selectedCategory" name="selectedCategory">
+    </form>
+</body>
+<script>
+  function selectOnChange(){
+    let category = document.getElementById("catagorySelect").value;
+    let formCategory = document.getElementById("selectedCategory");
+    let formToSubmit = document.getElementById("changeCategoryForm");
+    formCategory.value = category;
+    formToSubmit.submit();
+  }
+</script>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Admin - Upload Pruduct</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      div.preview-images > img {
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">JAVALI</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a>Admin Panel</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/"><span class="glyphicon glyphicon-user"></span> Log out</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <img class=logoImg src="javaliLogo.png" alt="JavaliLogo">
+      <h2>Admin Item Upload</h2>
+      <form class="mt-4,flex-container" id="uploadForm"
+        action="/upload"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+      <div class="form-group,flex-item">
+        <input
+          type="file"
+          name="file"
+          id="input-files"
+          class="form-control-file border"
+        />
+        </div>
+        <div class="flex-item">
+          <label for="pruductName">Pruduct Name:</label>
+          <input type="text" name="pruductName" id="pruductName">
+        </div>
+        <div class="flex-item">
+          <label for="pruductPrice">Pruduct Price:</label>
+          <input type="text" name="pruductPrice" id="pruductPrice">
+        </div>
+        <div class="flex-item">
+          <label for="itemCategory">Choose Category:</label>
+          <select id="itemCategory" name="itemCategory">
+            <option value="Album">Album</option>
+            <option value="Song">Song</option>
+            <option value="Merch">Merch</option>
+            <option value="Event">Event</option>
+          </select>
+        </div>
+        <div class="flex-item">
+          <input type="button" value="Submit" onclick="checkFiedsForUpload()">
+        </div>
+        <div id="alerts"></div>
+      </form>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="preview-images"></div>
+        </div>
+      </div>
+      <input type="button" onclick="history.back()" value="Back to Admin Panel">
+      <input type="button" onclick="window.location.href = 'store'" value="Store">
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      function checkFiedsForUpload(){
+        let form = document.getElementById("uploadForm");
+        let price = document.getElementById("pruductPrice").value;
+        let pruductName = document.getElementById("pruductName").value;
+        if (price.length && pruductName.length && !(isNaN(price))){
+          form.submit();
+        }else{
+          document.getElementById("alerts").innerHTML = "Please fill the fields as required!"
+        }
+      }
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#input-files").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      });
+    </script>
+  </body>
+</html>

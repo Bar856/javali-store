@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javali Store - Admin Msg</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">JAVALI</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="/store">Store</a></li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="active"><a>Admin Panel</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/"><span class="glyphicon glyphicon-user"></span> Log out</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <img class=logoImg src="javaliLogo.png" alt="JavaliLogo">
+        <h1>Admin Massege:</h1>
+        <div class="flex-container">
+            <div class="flex-item"><%=message%>.</div>
+            <div class="flex-container,text-center">
+              <input type="button" class='flex-item' onclick="window.history.go(-2);" value="Go back to Admin panel">
+              <input type="button" class='flex-item' onclick="window.location.href='/store'" value="Store">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

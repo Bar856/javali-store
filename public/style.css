@@ -1,0 +1,74 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+.flex-item{
+    padding: 8px;
+}
+nav{
+    opacity: 0.9;
+}
+.requiredFields{
+    color: red;
+    font-size: 12px;
+}
+.container{
+    opacity: 0.95;
+    background: #eee;
+    max-width: 550px;
+    margin: auto;
+    padding: 20px;
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+input[type=submit]{
+    margin: auto;
+    width: 200px;
+}
+input{
+    background-color: rgb(255, 255, 255);
+}
+.logoImg{
+    /* margin: auto; */
+    width: 500px;
+    height: 150px;
+}
+body{
+    background-image: url("./background.jpg");
+    background-repeat: repeat;
+    background-size: 100%;
+}
+table{
+    width: 100%;
+}
+th{
+    border: 3px solid rgb(141, 141, 141);
+    height: 50px;
+    vertical-align: middle;  
+}
+td{
+    border: 3px solid rgb(141, 141, 141);
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;  
+}
+.tableImg{
+    height: 100px;
+    width:  100px;
+}
+#imgCol{
+    width: 100px;
+}
+#priceCol{
+    width: 10px;
+}
+#nameCol{
+    width: 200px;
+}
+#catagoryCol{
+    width: 50px;
+}
+#buyCol{
+    width: 50px;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaliStore Users Manager</title>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">JAVALI</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a>Admin Panel</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/"><span class="glyphicon glyphicon-user"></span> Log out</a></li>
+          </ul>
+        </div>
+    </nav>
+    <div class="container" style="max-width: 1000px;">
+      <img class=logoImg src="javaliLogo.png" alt="JavaliLogo">
+        <h1>Admin Users Manager</h1>
+        <table class="flex-item">
+            <tr>
+                <th class="text-center">User Id</th>
+                <th class="text-center">Mail</th>
+                <th class="text-center">Password</th>
+                <th class="text-center">Delete?</th>
+            </tr>
+            <tr>
+                <td>Example id</td>
+                <td>Example@example.com</td>
+                <td>Example password</td>
+                <td><input class="toDelete" type="checkbox"></td>
+            </tr>
+            <%usersList.forEach((user,index) =>{%>
+                <tr>
+                    <td><%=user._id%></td>
+                    <td><%=user.mail%></td>
+                    <td><%=user.password%></td>
+                    <td><input class="toDelete" type="checkbox" id=<%=user._id%>></td>
+                </tr>
+            <%})%>
+        </table>
+        <br/>
+        <button class="flex-item,btn btn-danger" onclick="sendInvisibleForm()">Delete</button> 
+        <br/>
+        <br/>
+        
+        <div class="flex-container,flex-item">
+            <input class="flex-item" onclick="history.back()" type="button" value="Back To Admin Panel">
+            <input  class="flex-item" onclick="window.location.href = 'store'"type="button" value="Store">
+        </div>
+        
+    </div>
+    <form action="/deleteApi" method="post" id="deleteApiForm" hidden>
+        <input type="text" id="objectIDToDelete" name="objectIDToDelete">
+        <input type="text" id="deleteTable" name="deleteTable" value="Users">
+    </form>
+</body>
+<script>
+    function sendInvisibleForm(){
+        let rowsToDeleteHTml = document.getElementsByClassName("toDelete");
+        var arr = [...rowsToDeleteHTml];
+        var arrDelete=[];
+        arr.forEach(element => {
+            if(element.checked){
+                arrDelete.push(element.id)
+            }
+        });
+        document.getElementById("objectIDToDelete").value = arrDelete;
+        document.getElementById("deleteApiForm").submit();
+    };
+</script>
+</html>
